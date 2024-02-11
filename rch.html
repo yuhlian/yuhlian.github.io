@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>real chance hsr</title>
+ <meta content="real chance calculator hsr" property="og:title" />
+ <meta content="send this to your friend that's confused why their debuff isn't landing" property="og:description" />
+ <meta content="https://yuhlian.github.io/rch" property="og:url" />
+ <meta content="#F0F0F0" data-react-helmet="true" name="theme-color" />
+ <style>
+  body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  }
+  .container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 500px; 
+  }
+  h2 {
+  text-align: center;
+  }
+  .tab {
+  display: none;
+  }
+  .tab-button {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 10px 10px 0 0;
+  }
+  .active-tab-button {
+  background-color: #f0f0f0;
+  }
+  .form-container {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 0 0 10px 10px;
+  }
+  label {
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
+  }
+  input[type="text"] {
+  width: 97.99%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #FDFDFD;
+  }
+  p {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10px;
+  }
+ </style>
+ <script>
+  function customParseFloat(value) {
+  var numericParts = value.match(/\d+(\.\d+)?/g);
+  if (numericParts) {
+  return numericParts.reduce(function (accumulator, part) {
+  return accumulator + parseFloat(part);
+  }, 0);
+  }
+  return NaN;
+  }
+  function calculate() {
+  var box1 = customParseFloat(document.getElementById("box1").value);
+  var box2 = customParseFloat(document.getElementById("box2").value);
+  var box3 = customParseFloat(document.getElementById("box3").value);	
+  var box4 = customParseFloat(document.getElementById("box4").value);
+  if (!isNaN(box1) && !isNaN(box2) && !isNaN(box3) && !isNaN(box4)) {
+  var result = ((box1) * (1 - box2/100) * (1 - box3/100) * (1 + box4 / 100));
+  result = result.toFixed(0)
+  document.getElementById("result").value = result;
+  } else {
+  document.getElementById("result").value = "?";
+  }
+  }
+ </script>
+</head>
+<body>
+ <h2>real chance calculator hsr</h2>
+ <p>made by @yuvlian</p>
+  <p>just type in the number, no need to add the % symbol.</p>
+  <p>if you wanna calculate enemy's debuffs chance, just check their wiki page for the numbers.</p>
+ <div class="container"> <button class="tab-button" onclick="openTab('mainTab')">the numbers</button>
+  <div id="mainTab" class="tab">
+   <div class="form-container"> <b><u>the numbers</u></b>
+    <form> <label for="box1">base chance</label> <input type="text" id="box1" oninput="calculate()"><br> <label for="box2">effect res</label> <input type="text" id="box2" oninput="calculate()"><br> <label for="box3">debuff res</label> <input type="text" id="box3" oninput="calculate()"><br> <label for="box4">effect hit rate</label> <input type="text" id="box4" oninput="calculate()"><br></form>
+   </div>
+  </div>
+  <div class="form-container"> <b><u>real chance % of happening (rounded)</u></b>
+   <form> <br> <input type="text" id="result" readonly> </form>
+  </div>
+ </div>
+ <script>
+  function openTab(tabName) {
+  var i, tab;
+  tab = document.getElementsByClassName("tab");
+  for (i = 0; i < tab.length; i++) {
+  tab[i].style.display = "none";
+  }
+  document.getElementById(tabName).style.display = "block";
+  }
+  openTab("mainTab");
+ </script>
+</body>
+</html>
